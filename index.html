@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock, Paper, Scissors!</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<script type="text/javascript">
+
+//Defines how the computer will choose
+function computerPlay() 
+{
+	return arr[Math.floor(Math.random() * arr.length)];
+}
+
+//Sets the conditions for winning or losing a round
+function playRound(playerSelection, computerSelection)
+{ 
+
+if ((playerSelection === "rock")) {
+	if (computerSelection === "rock") {
+		return tie;
+	}
+	else if (computerSelection === "paper") {
+		computerScore += 1;
+		return lose;
+	}
+	else if (computerSelection === "scissors") {
+		playerScore += 1;
+		return win;
+		}
+	}
+else if (playerSelection === 'paper') {
+	if (computerSelection === 'rock') {
+		playerScore += 1;
+		return win;
+	}
+	else if (computerSelection === 'scissors'){
+		computerScore += 1;
+		return lose;
+	}
+	else if (computerSelection === 'paper'){
+		return tie;
+	}
+}
+else if (playerSelection === 'scissors'){
+	if (computerSelection === 'scissors') {
+		return tie;
+	}
+	else if (computerSelection === 'paper') {
+		playerScore += 1;
+		return win;
+	}
+	else if (computerSelection === 'rock'){
+		computerScore += 1;
+		return lose;
+	}
+  }
+ } 
+
+//For a 5 round game
+function game() 
+{
+	
+	let round = 0
+	
+
+	while (round < 5) {
+		playerSelection = window.prompt("Rock, Paper, or Scissors?").toLowerCase();
+		computerSelection = computerPlay();
+		computerPlay();
+		console.log(playRound(playerSelection, computerSelection));
+		round++;	
+	}
+	if (playerScore > computerScore){
+		console.log(winner);
+	}
+	else if (playerScore < computerScore){
+		console.log(loser);
+	}
+	else if (playerScore == computerScore){
+		console.log(tied);
+	}
+}
+
+//Global Variables
+let arr = ["rock", "paper", "scissors"];
+let playerScore = 0;
+let computerScore = 0;
+
+//Constants
+const win = "You win! Rock beats Scissors! 'I am inevitable.' -Thanos, The Mad Titan ";
+const lose = "You lose... 'I know what it's like to lose. To feel so desperately that you're right.' -Thanos, the survivor";
+const tie = "You tied. 'Perfectly Balanced. As all things should be.' -Thanos, protagonist of the Marvel Universe";
+const winner = "You win! Good job!";
+const loser = "Loser! Try again next time!";
+const tied = "You tied.. I guess its better than losing";
+
+//run a 5 round game
+game();
+</script>
+
+</body>
+</html>
